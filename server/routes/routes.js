@@ -46,4 +46,21 @@ router.post('/create', (req, res) => {
     }
 });
 
+//Update a note 
+router.put('/note/:id', (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body; 
+    const note_title = title;
+    const note_content = content; 
+    const edited = 1;
+    const changes = { note_title, note_content, edited };
+    
+    models 
+        .updateNote(id, changes)
+            .then(note => {
+                res.status(200).json(note);
+            })
+            .catch(err => res.status(500).json(err));
+});
+
 module.exports = router; 
