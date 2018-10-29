@@ -31,6 +31,7 @@ router.get('/note/:id', (req, res) => {
 router.post('/create', (req, res) => {
     const { title, content, user_id } = req.body;
     const note = { title, content, user_id };
+    console.log(note);
 
     if(!title && !content && !user_id) {
         res.status(406).json({ error: 'req body not acceptable' });
