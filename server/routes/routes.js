@@ -63,4 +63,20 @@ router.put('/note/:id', (req, res) => {
             .catch(err => res.status(500).json(err));
 });
 
+//Delete a specific note
+router.delete('/note/:id', (req, res) => {
+    const { id } = req.params;
+
+    models 
+        .removeNote(id)
+        .then(count => {
+            if (!count || count < 1) {
+              res.status(404).json({ message: 'No records found to delete' });
+            } else {
+              res.status(200).json({ recordsDeleted: count });
+            }
+          })
+          .catch(err => res.status(500).json(err));
+});
+
 module.exports = router; 
