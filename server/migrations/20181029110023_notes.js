@@ -8,10 +8,10 @@ exports.up = function(knex, Promise) {
           .references('id')
           .inTable('users');
         table
-          .string('note_title', 128)
+          .string('title', 128)
           .notNullable();
         table
-          .text('note_content')
+          .text('content')
           .notNullable();
         table
           .boolean('edited')
