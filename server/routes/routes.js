@@ -30,9 +30,8 @@ router.get('/note/:id', (req, res) => {
 //Create a note with a title and content
 router.post('/create', (req, res) => {
     const { title, content, user_id } = req.body;
-    const note_title = title;
-    const note_content = content; 
-    const note = { note_title, note_content, user_id };
+    const note = { title, content, user_id };
+    console.log(note);
 
     if(!title && !content && !user_id) {
         res.status(406).json({ error: 'req body not acceptable' });
@@ -50,10 +49,8 @@ router.post('/create', (req, res) => {
 router.put('/note/:id', (req, res) => {
     const { id } = req.params;
     const { title, content } = req.body; 
-    const note_title = title;
-    const note_content = content; 
     const edited = 1;
-    const changes = { note_title, note_content, edited };
+    const changes = { title, content, edited };
     
     models 
         .updateNote(id, changes)
