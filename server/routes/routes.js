@@ -14,6 +14,19 @@ router.get('/notes', (req, res) => {
             .catch(err => res.status(500).json(err));
 });
 
+//Get one specific note
+router.get('/note/:id', (req, res) => {
+    const { id } = req.params; 
+    console.log('id', id);
+    
+    models
+        .findNoteById(id)
+            .then(note => {
+                res.status(200).json(note);
+            })
+            .catch(err => res.status(500).json(err));
+});
+
 //Create a note with a title and content
 router.post('/create', (req, res) => {
     const { title, content, user_id } = req.body;
@@ -31,6 +44,6 @@ router.post('/create', (req, res) => {
                 })
                 .catch(err => res.status(500).json({ error: 'createNote failed', err }));
     }
-})
+});
 
 module.exports = router; 
