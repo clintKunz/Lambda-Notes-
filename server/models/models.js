@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 const db = require('../knex');
+=======
+const db = require('./knex.js');
+>>>>>>> 9934f8f9e31e2da454b680610007eb219bd4e7d2
 
 module.exports = {
     getNotes,
